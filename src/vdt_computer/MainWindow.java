@@ -80,11 +80,9 @@ public class MainWindow extends JFrame{
       
       layout.setVerticalGroup(layout.createSequentialGroup()
               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-              .addComponent(txtInput)
-              .addComponent(panelCode))
-              
+                    .addComponent(txtInput)
+                    .addComponent(panelCode))
               .addComponent(btnSubmit)
-      
       );
      
       panel.setLayout(layout);        
