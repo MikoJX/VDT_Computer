@@ -36,24 +36,49 @@ public class CodePanel extends Canvas  {
         g.setColor(Color.BLACK);
         //g.fillRect(x, y, width, height)
         g.fillRect(0, 0, 200, 5);  //top line
-        g.fillRect(0,200, 205, 5); //bottom line
+        g.fillRect(0,195, 195, 5); //bottom line
         g.fillRect(0, 0, 5, 200);  //left line
-        g.fillRect(200,0, 5, 200); //right line
+        g.fillRect(195,0, 5, 200); //right line
         
         //drawing of white border 
-        g.setColor(new Color(0,0,255));
+        g.setColor(Color.WHITE);
         g.fillRect(5, 5,190, 5 );   //top line
-        g.fillRect(5, 195,195, 5);  //bottom line
+        g.fillRect(5, 190,190, 5);  //bottom line
         g.fillRect(5, 5, 5, 190);   //left line
-        g.fillRect(195, 5, 5,190);  //right line
-        
-        
-        // for setting for RGB (R,G,)
-         g.setColor(new Color(30,0,0));
+        g.fillRect(190, 5, 5,190);  //right line
+       
+        // for setting for RGB (R,G,B)
+        boolean states = true;
+        for (int y = 10 ; y <= 180 ; y += 20) {
+            for (int x = 10; x <= 180 ; x += 20 ) {
+                if (states) {
+                    g.setColor(new Color(255-x,0,0));
+                }
+                else {
+                    g.setColor(new Color(55+x ,0,0));
+                }
+                //g.setColor(new Color(255-x,0,0));
+                g.fillRect(x,y,20,20);
+                }
+                if(states) states = false;
+                else states = true;
+            }
+                
+       
+            
+            
+            
+        } 
+        // g.setColor(new Color(255,0,0));
+        // g.fillRect(10,10,20,20);
+         
+         //g.setColor(Color.);
+         
+         
     }
     
     /**@Override
     public void colourCodeGenerator(Graphic g) {
         super.paint(g);
     } */
-}
+
