@@ -26,7 +26,7 @@ public class VDT_Computer {
         
         
        MainWindow mw = new MainWindow();
-       mw.showGroupLayout(); // plug in showGroupLayout into the frame 
-         
-    }   
+       //mw.showGroupLayout(); // plug in showGroupLayout into the frame   
+        
+    }
 }

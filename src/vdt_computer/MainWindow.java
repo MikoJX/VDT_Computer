@@ -5,7 +5,9 @@
  */
 package vdt_computer;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,25 +20,26 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.LayoutStyle;
+import java.awt.Container;
+import java.awt.BorderLayout;
+import java.awt.Font;
 
 /**
  *
  * @author User
  */
 public class MainWindow extends JFrame{
-    
+    public static boolean RIGHT_TO_LEFT = false;
     private JFrame mainFrame;
-    private JPanel panel;
+    private JPanel panel; 
     private CodePanel panelCode;
     private JButton btnSubmit; 
     private JTextArea txtInput; 
-    
-   
-   private JLabel headerLabel;
+    private JLabel lblHeader;
+  
    private JLabel statusLabel;
    private JPanel controlPanel;
   
-    
     MainWindow() {
         prepareGUI();
     }
@@ -44,18 +47,24 @@ public class MainWindow extends JFrame{
     private void prepareGUI(){
         
       //------------------------- Create new frame -----------------------
-      mainFrame = new JFrame("Java SWING Examples");
+      mainFrame = new JFrame("VDT Computer Enviroment");
+      mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       mainFrame.setSize(700,500);
-      mainFrame.addWindowListener(new WindowAdapter() {
-         public void windowClosing(WindowEvent windowEvent){
-	        System.exit(0);
-         }        
-      });    
-      controlPanel = new JPanel();
-      controlPanel.setLayout(new FlowLayout());
-
-      mainFrame.add(controlPanel);
-      mainFrame.setVisible(true);  
+      addComponentToPane(mainFrame.getContentPane());
+      
+//      mainFrame.addWindowListener(new WindowAdapter() {
+//         public void windowClosing(WindowEvent windowEvent){
+//	        System.exit(0);
+//         }        
+//      });    
+      
+      //mainFrame.pack();
+      mainFrame.setVisible(true);
+//      controlPanel = new JPanel();
+//      controlPanel.setLayout(new FlowLayout());
+//
+//      mainFrame.add(controlPanel);
+//      mainFrame.setVisible(true);  
    }
 
    protected void showGroupLayout(){    
@@ -68,9 +77,24 @@ public class MainWindow extends JFrame{
       
       txtInput = new JTextArea(24,25);
       panelCode = new CodePanel();
+      //panelCode = new JPanel();
+      panelCode.setSize(300, 200);
       btnSubmit = new JButton("Submit");
+      btnSubmit.addActionListener(new ActionListener()
+			{
+				@Override
+				public void actionPerformed(ActionEvent evt) {
+					panelCode = new CodePanel() ;
+                                        
+                                        
+                                        CodeEncoding Encoding= new CodeEncoding();
+                                        Encoding.ColourEncode(txtInput.getText().toString());
+                                }
+			});      
 
       // --------------------------- Set the layout 
+      
+      
       layout.setHorizontalGroup(layout.createSequentialGroup()
               .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
                       .addComponent(txtInput)
@@ -84,12 +108,62 @@ public class MainWindow extends JFrame{
                     .addComponent(panelCode))
               .addComponent(btnSubmit)
       );
-     
+//     
       panel.setLayout(layout);        
       controlPanel.add(panel);
 
       mainFrame.setVisible(true);  
    }
-    
+   
+   protected void addComponentToPane(Container pane) {
+       
+       if (!(pane.getLayout() instanceof BorderLayout)) {
+           pane.add(new JLabel("Container does't use BorderLayout!"));
+       }
+       
+       if (RIGHT_TO_LEFT) {
+           pane.setComponentOrientation(java.awt.ComponentOrientation.RIGHT_TO_LEFT);
+       }
+       
+       
+       //JPanel panel = new JPanel();
+       //panel.setSize(600,400);
+       //GroupLayout layout = new GroupLayout(panel);
+       //layout.setAutoCreateGaps(true);
+       //layout.setAutoCreateContainerGaps(true);
+       
+       //Header setting
+       lblHeader = new JLabel("Visual Data Transmission");
+       lblHeader.setFont(new Font("Serif", Font.PLAIN, 20));
+       pane.add(lblHeader,BorderLayout.PAGE_START);
+       
+       txtInput = new JTextArea(24,25);
+       JPanel leftpanel = new JPanel();
+       leftpanel.setSize(600,400);
+       leftpanel.add(txtInput);
+       pane.add(leftpanel, BorderLayout.WEST);
+       
+       JButton btn = new JButton("Hello");
+       JPanel rightpanel = new JPanel();
+       rightpanel.setSize(300,200);
+       rightpanel.add(btn);
+       pane.add(rightpanel, BorderLayout.CENTER);
+       
+       
+       btnSubmit = new JButton("Submit");
+       btnSubmit.addActionListener(new ActionListener()
+			{
+				@Override
+				public void actionPerformed(ActionEvent evt) {
+					panelCode = new CodePanel() ;
+                                        rightpanel.add(panelCode);
+                                        
+                                        //CodeEncoding Encoding= new CodeEncoding();
+                                        //Encoding.ColourEncode(txtInput.getText().toString());
+                                }
+			}); 
+       pane.add(btnSubmit,BorderLayout.AFTER_LAST_LINE);
+       
+   }
     
 }

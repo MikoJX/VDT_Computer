@@ -21,7 +21,7 @@ public class CodePanel extends Canvas  {
      public CodePanel () {
         super();
         super.setSize(300,200);
-         myPanel= new JPanel();
+        myPanel= new JPanel();
         //frame.getContentPane().add(this);
         //frame.pack();
         myPanel.setVisible(true);
@@ -32,37 +32,40 @@ public class CodePanel extends Canvas  {
     public void paint(Graphics g) {
         super.paint(g);
         
-        // drawing of black border
+        // drawing of black border [g.fillRect(x, y, width, height)]
         g.setColor(Color.BLACK);
-        //g.fillRect(x, y, width, height)
-        g.fillRect(0, 0, 200, 5);  //top line
-        g.fillRect(0,195, 195, 5); //bottom line
-        g.fillRect(0, 0, 5, 200);  //left line
-        g.fillRect(195,0, 5, 200); //right line
+        g.fillRect(0, 0, 240, 10);  //top line
+        g.fillRect(0,230, 240, 10); //bottom line
+        g.fillRect(0, 0, 10, 240);  //left line
+        g.fillRect(230,0, 10, 240); //right line
         
         //drawing of white border 
         g.setColor(Color.WHITE);
-        g.fillRect(5, 5,190, 5 );   //top line
-        g.fillRect(5, 190,190, 5);  //bottom line
-        g.fillRect(5, 5, 5, 190);   //left line
-        g.fillRect(190, 5, 5,190);  //right line
+        g.fillRect(10, 10,220, 10);   //top line
+        g.fillRect(10, 220,220, 10);  //bottom line
+        g.fillRect(10, 10, 10, 220);   //left line
+        g.fillRect(220, 10, 10,220);  //right line
        
         // for setting for RGB (R,G,B)
-        boolean states = true;
-        for (int y = 10 ; y <= 180 ; y += 20) {
-            for (int x = 10; x <= 180 ; x += 20 ) {
+        //block size 20x20
+        //code size 10x10 (w x h)
+        
+        
+        boolean states = true; 
+        for (int y = 20 ; y <= 200 ; y += 20) {
+            for (int x = 20; x <= 200 ; x += 20 ) {
                 if (states) {
-                    g.setColor(new Color(255-x,0,0));
+                    g.setColor(new Color(255-x,0,0)); //colour setting
                 }
-                else {
-                    g.setColor(new Color(55+x ,0,0));
+                else { //change to dark to light
+                    g.setColor(new Color(55+x ,0,0)); //colour setting 
                 }
                 //g.setColor(new Color(255-x,0,0));
                 g.fillRect(x,y,20,20);
                 }
                 if(states) states = false;
                 else states = true;
-            }
+            } 
                 
        
             
