@@ -76,43 +76,41 @@ public class MainWindow extends JFrame{
       layout.setAutoCreateContainerGaps(true);
       
       txtInput = new JTextArea(24,25);
-      panelCode = new CodePanel();
+      //panelCode = new CodePanel();
       //panelCode = new JPanel();
-      panelCode.setSize(300, 200);
-      btnSubmit = new JButton("Submit");
-      btnSubmit.addActionListener(new ActionListener()
-			{
-				@Override
-				public void actionPerformed(ActionEvent evt) {
-					panelCode = new CodePanel() ;
-                                        
-                                        
-                                        CodeEncoding Encoding= new CodeEncoding();
-                                        Encoding.ColourEncode(txtInput.getText().toString());
-                                }
-			});      
+      //panelCode.setSize(300, 200);
+//      btnSubmit = new JButton("Submit");
+//      btnSubmit.addActionListener(new ActionListener()
+//			{
+//				@Override
+//				public void actionPerformed(ActionEvent evt) {
+//					//panelCode = new CodePanel() ;
+//                                        CodeEncoding Encoding= new CodeEncoding();
+//                                        Encoding.ColourEncode(txtInput.getText().toString());
+//                                }
+//			});      
 
       // --------------------------- Set the layout 
       
       
-      layout.setHorizontalGroup(layout.createSequentialGroup()
-              .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                      .addComponent(txtInput)
-                      .addComponent(btnSubmit))
-              .addComponent(panelCode) 
-      );
-      
-      layout.setVerticalGroup(layout.createSequentialGroup()
-              .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                    .addComponent(txtInput)
-                    .addComponent(panelCode))
-              .addComponent(btnSubmit)
-      );
-//     
-      panel.setLayout(layout);        
-      controlPanel.add(panel);
-
-      mainFrame.setVisible(true);  
+//      layout.setHorizontalGroup(layout.createSequentialGroup()
+//              .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+//                      .addComponent(txtInput)
+//                      .addComponent(btnSubmit))
+//              .addComponent(panelCode) 
+//      );
+//      
+//      layout.setVerticalGroup(layout.createSequentialGroup()
+//              .addGroup(layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+//                    .addComponent(txtInput)
+//                    .addComponent(panelCode))
+//              .addComponent(btnSubmit)
+//      );
+////     
+//      panel.setLayout(layout);        
+//      controlPanel.add(panel);
+//
+//      mainFrame.setVisible(true);  
    }
    
    protected void addComponentToPane(Container pane) {
@@ -123,15 +121,7 @@ public class MainWindow extends JFrame{
        
        if (RIGHT_TO_LEFT) {
            pane.setComponentOrientation(java.awt.ComponentOrientation.RIGHT_TO_LEFT);
-       }
-       
-       
-       //JPanel panel = new JPanel();
-       //panel.setSize(600,400);
-       //GroupLayout layout = new GroupLayout(panel);
-       //layout.setAutoCreateGaps(true);
-       //layout.setAutoCreateContainerGaps(true);
-       
+       }       
        //Header setting
        lblHeader = new JLabel("Visual Data Transmission");
        lblHeader.setFont(new Font("Serif", Font.PLAIN, 20));
@@ -143,23 +133,24 @@ public class MainWindow extends JFrame{
        leftpanel.add(txtInput);
        pane.add(leftpanel, BorderLayout.WEST);
        
-       JButton btn = new JButton("Hello");
+       //JButton btn = new JButton("Hello");
        JPanel rightpanel = new JPanel();
-       rightpanel.setSize(300,200);
-       rightpanel.add(btn);
        pane.add(rightpanel, BorderLayout.CENTER);
-       
        
        btnSubmit = new JButton("Submit");
        btnSubmit.addActionListener(new ActionListener()
 			{
 				@Override
 				public void actionPerformed(ActionEvent evt) {
-					panelCode = new CodePanel() ;
-                                        rightpanel.add(panelCode);
+                                    //rightPanel
+                                    int[] temp = new int[100];
+                                    panelCode = new CodePanel() ;
+                                    rightpanel.add(panelCode);
+                                    System.out.println("Set click");
                                         
-                                        //CodeEncoding Encoding= new CodeEncoding();
-                                        //Encoding.ColourEncode(txtInput.getText().toString());
+                                    CodeEncoding Encoding= new CodeEncoding();
+                                    Encoding.ColourEncode(txtInput.getText().toString());
+                                    System.out.println("After click");
                                 }
 			}); 
        pane.add(btnSubmit,BorderLayout.AFTER_LAST_LINE);
